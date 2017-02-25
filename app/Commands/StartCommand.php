@@ -43,7 +43,24 @@ class StartCommand extends Command
         }
 
         // Reply with the commands list
-        $this->replyWithMessage(['text' => $response]);
+//        $this->replyWithMessage(['text' => $response]);
+        $keyboard = [
+            ['7', '8', '9'],
+            ['4', '5', '6'],
+            ['1', '2', '3'],
+            ['0']
+        ];
+
+        $reply_markup =  $this->getTelegram()->replyKeyboardMarkup([
+            'keyboard' => $keyboard,
+            'resize_keyboard' => true,
+            'one_time_keyboard' => true
+        ]);
+
+        $this->replyWithMessage(
+            [
+            'reply_markup' => $reply_markup
+            ]);
 
         $this->getTelegram()->replyKeyboardMarkup(['keyboard'=>['test','test2']]);
 
