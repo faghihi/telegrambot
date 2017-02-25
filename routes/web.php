@@ -19,7 +19,7 @@ Route::get('/testbot','telegramtestcontroller@index');
 
 Route::get('/set', function () {
     $res = Telegram::setWebhook([
-        'url' => 'https://localhost:8443/376682828:AAE79WT571kMAmUk77iD3KJIni0ml7xixEs/webhook'
+        'url' => 'https://hamyad.herokuapp.com/376682828:AAE79WT571kMAmUk77iD3KJIni0ml7xixEs/webhook'
     ]);
     dd($res);
 
