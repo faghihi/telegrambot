@@ -45,7 +45,7 @@ class StartCommand extends Command
         // Reply with the commands list
         $this->replyWithMessage(['text' => $response]);
 
-        $this->getTelegram()->KeyboardButton(['text'=>'salam']);
+        $this->getTelegram()->replyKeyboardMarkup(['keyboard'=>['test','test2']]);
 
 
         // Trigger another command dynamically from within this command
