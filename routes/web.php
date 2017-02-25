@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('/testbot','telegramtestcontroller@index');
+Route::get('/testbot1','telegramtestcontroller@sendtext');
 
 Route::get('/set', function () {
     $res = Telegram::setWebhook([

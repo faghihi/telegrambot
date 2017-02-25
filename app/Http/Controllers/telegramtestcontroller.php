@@ -18,4 +18,17 @@ class telegramtestcontroller extends Controller
 
         return $firstName;
     }
+
+    public function sendtext()
+    {
+        $telegram = new Api();
+
+        $response = $telegram->sendMessage([
+            'chat_id' => 'CHAT_ID',
+            'text' => 'Hello World'
+        ]);
+
+        $messageId = $response->getMessageId();
+        return $messageId;
+    }
 }
