@@ -81,11 +81,10 @@ class StartCommand extends Command
         $update=$this->getTelegram()->getWebhookUpdates();
         $chat_id=$update->getMessage()->getChat()->getId();
         $text=$update->getMessage()->getText();
-        $text2=$update->getRawResponse();
         $update->getMessage()->getMessageId();
         $this->replyWithMessage(
             [
-                'text'=>$text2,
+                'text'=>$text,
 
             ]);
 
