@@ -7,17 +7,17 @@ use Telegram\Bot\Commands\Command;
 use Telegram\Bot\Laravel\Facades\Telegram;
 
 
-class StartCommand extends Command
+class StopCommand extends Command
 {
     /**
      * @var string Command Name
      */
-    protected $name = "start";
+    protected $name = "stop";
 
     /**
      * @var string Command Description
      */
-    protected $description = "برای شروع";
+    protected $description = "end";
 
     /**
      * @inheritdoc
@@ -35,56 +35,11 @@ class StartCommand extends Command
         // This will prepare a list of available commands and send the user.
         // First, Get an array of all registered commands
         // They'll be in 'command-name' => 'Command Handler Class' format.
-        $commands = $this->getTelegram()->getCommands();
-
-        // Build the list
-        $response = '';
-        foreach ($commands as $name => $command) {
-            $response .= sprintf('/%s - %s' . PHP_EOL, $name, $command->getDescription());
-        }
-
-        // Reply with the commands list
-        $this->replyWithMessage(['text' => $response]);
-//        $keyboard = [
-//            ['7', '8', '9'],
-//            ['4', '5', '6'],
-//            ['1', '2', '3'],
-//            ['0']
-//        ];
-//
-//        $reply_markup =  $this->getTelegram()->replyKeyboardMarkup([
-//            'keyboard' => $keyboard,
-//            'resize_keyboard' => true,
-//            'one_time_keyboard' => true
-//        ]);
-        $keyboard = [
-            [
-                ['text'=>'google','url'=>'http://google.com']
-            ],
-            [
-                ['text'=>'google','url'=>'http://google.com']
-            ]
-        ];
-
-        $reply_markup =  $this->getTelegram()->replyKeyboardMarkup([
-            'inline_keyboard' => $keyboard,
-            'one_time_keyboard'=>true
-        ]);
-
-        $this->replyWithMessage(
-            [
-                'text'=>'hello ',
-                'reply_markup' => $reply_markup
-            ]);
-
-        sleep(20);
         $update=$this->getTelegram()->getWebhookUpdates();
         $chat_id=$update->getMessage()->getChat()->getId();
-        $text2=$update->recentMessage()->getText();
+        $text2=$update->
         $text=$update->getMessage()->getText();
         $update->getMessage()->getMessageId();
-        $text2=$this->getTelegram()->getLastResponse()->getBody();
-
         $this->replyWithMessage(
             [
                 'text'=>$text2,
