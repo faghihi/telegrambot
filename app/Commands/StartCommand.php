@@ -68,6 +68,7 @@ class StartCommand extends Command
 
         $reply_markup =  $this->getTelegram()->replyKeyboardMarkup([
             'inline_keyboard' => $keyboard,
+            'one_time_keyboard'=>true
         ]);
 
         $this->replyWithMessage(
@@ -78,6 +79,7 @@ class StartCommand extends Command
         $update=$this->getTelegram()->getWebhookUpdates();
         $chat_id=$update->getMessage()->getChat()->getId();
         $text=$update->getMessage()->getText();
+        $update->getMessage()->getMessageId();
         $this->replyWithMessage(
             [
                 'text'=>$text,
