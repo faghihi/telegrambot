@@ -77,14 +77,15 @@ class StartCommand extends Command
                 'reply_markup' => $reply_markup
             ]);
 
-//        sleep(20);
+        sleep(20);
         $update=$this->getTelegram()->getWebhookUpdates();
         $chat_id=$update->getMessage()->getChat()->getId();
+        $text2=$update->recentMessage()->getMessage()->getText();
         $text=$update->getMessage()->getText();
         $update->getMessage()->getMessageId();
         $this->replyWithMessage(
             [
-                'text'=>$text,
+                'text'=>$text2,
 
             ]);
 
