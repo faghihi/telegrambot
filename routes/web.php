@@ -20,13 +20,13 @@ Route::get('/testbot1','telegramtestcontroller@sendtext');
 
 Route::get('/set', function () {
     $res = Telegram::setWebhook([
-        'url' => 'https://hamyad.herokuapp.com/376682828:AAE79WT571kMAmUk77iD3KJIni0ml7xixEs/webhook1'
+        'url' => 'https://hamyad.herokuapp.com/376682828:AAE79WT571kMAmUk77iD3KJIni0ml7xixEs/webhook'
     ]);
     dd($res);
 
 });
 
-Route::post('/376682828:AAE79WT571kMAmUk77iD3KJIni0ml7xixEs/webhook1', function () {
+Route::post('/376682828:AAE79WT571kMAmUk77iD3KJIni0ml7xixEs/webhook', function () {
 
     /** @var \Telegram\Bot\Objects\Update $update */
     $update = Telegram::commandsHandler(true);
