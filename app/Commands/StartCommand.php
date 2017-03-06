@@ -76,7 +76,6 @@ class StartCommand extends Command
                 'text'=>'hello ',
                 'reply_markup' => $reply_markup
             ]);
-        $this->
         $update=$this->getTelegram()->getWebhookUpdates();
         $chat_id=$update->getMessage()->getChat()->getId();
         $text=$update->getMessage()->getText();
