@@ -4,6 +4,7 @@ namespace App\Commands;
 
 use Telegram\Bot\Actions;
 use Telegram\Bot\Commands\Command;
+use Telegram\Bot\Laravel\Facades\Telegram;
 
 
 class StartCommand extends Command
@@ -73,6 +74,12 @@ class StartCommand extends Command
             [
                 'text'=>'hello ',
                 'reply_markup' => $reply_markup
+            ]);
+        $update=$this->getTelegram()->getWebhookUpdates();
+        $chat_id=$update->getMessage()->getChat()->getId();
+        $this->replyWithMessage(
+            [
+                'text'=>$chat_id,
             ]);
 
 //        $this->getTelegram()->replyKeyboardMarkup(['keyboard'=>['test','test2']]);
