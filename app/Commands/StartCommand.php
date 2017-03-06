@@ -50,16 +50,16 @@ class StartCommand extends Command
             ['0']
         ];
 
-        $reply_markup =  $this->getTelegram()->replyKeyboardMarkup([
-            'keyboard' => $keyboard,
-            'resize_keyboard' => true,
-            'one_time_keyboard' => true
-        ]);
+//        $reply_markup =  $this->getTelegram()->replyKeyboardMarkup([
+//            'keyboard' => $keyboard,
+//            'resize_keyboard' => true,
+//            'one_time_keyboard' => true
+//        ]);
 
         $this->replyWithMessage(
             [
-                'text'=>'salam bache ha ',
-                'reply_markup' => $reply_markup
+                'text'=>'hello ',
+//                'reply_markup' => $reply_markup
             ]);
 
         $this->getTelegram()->replyKeyboardMarkup(['keyboard'=>['test','test2']]);
