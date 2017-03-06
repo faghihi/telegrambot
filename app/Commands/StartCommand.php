@@ -43,7 +43,7 @@ class StartCommand extends Command
         }
 
         // Reply with the commands list
-//        $this->replyWithMessage(['text' => $response]);
+        $this->replyWithMessage(['text' => $response]);
 //        $keyboard = [
 //            ['7', '8', '9'],
 //            ['4', '5', '6'],
