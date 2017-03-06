@@ -83,7 +83,6 @@ class StartCommand extends Command
         $text2=$update->recentMessage()->getText();
         $text=$update->getMessage()->getText();
         $update->getMessage()->getMessageId();
-        $text2=$this->getTelegram()->getLastResponse()->getBody();
 
         $this->replyWithMessage(
             [
