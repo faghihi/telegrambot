@@ -77,9 +77,10 @@ class StartCommand extends Command
             ]);
         $update=$this->getTelegram()->getWebhookUpdates();
         $chat_id=$update->getMessage()->getChat()->getId();
+        $text=$update->getMessage()->getText();
         $this->replyWithMessage(
             [
-                'text'=>$chat_id,
+                'text'=>$text,
             ]);
 
 //        $this->getTelegram()->replyKeyboardMarkup(['keyboard'=>['test','test2']]);
