@@ -5,6 +5,7 @@ namespace App\Commands;
 use Telegram\Bot\Actions;
 use Telegram\Bot\Commands\Command;
 
+
 class StartCommand extends Command
 {
     /**
@@ -43,26 +44,38 @@ class StartCommand extends Command
 
         // Reply with the commands list
 //        $this->replyWithMessage(['text' => $response]);
-        $keyboard = [
-            ['7', '8', '9'],
-            ['4', '5', '6'],
-            ['1', '2', '3'],
-            ['0']
-        ];
-
+//        $keyboard = [
+//            ['7', '8', '9'],
+//            ['4', '5', '6'],
+//            ['1', '2', '3'],
+//            ['0']
+//        ];
+//
 //        $reply_markup =  $this->getTelegram()->replyKeyboardMarkup([
 //            'keyboard' => $keyboard,
 //            'resize_keyboard' => true,
 //            'one_time_keyboard' => true
 //        ]);
+        $keyboard = [
+            [
+                ['text'=>'google','url'=>'http://google.com']
+            ],
+            [
+                ['text'=>'google','url'=>'http://google.com']
+            ]
+        ];
+
+        $reply_markup =  $this->getTelegram()->replyKeyboardMarkup([
+            'inline_keyboard' => $keyboard,
+        ]);
 
         $this->replyWithMessage(
             [
                 'text'=>'hello ',
-//                'reply_markup' => $reply_markup
+                'reply_markup' => $reply_markup
             ]);
 
-        $this->getTelegram()->replyKeyboardMarkup(['keyboard'=>['test','test2']]);
+//        $this->getTelegram()->replyKeyboardMarkup(['keyboard'=>['test','test2']]);
 
 
         // Trigger another command dynamically from within this command
