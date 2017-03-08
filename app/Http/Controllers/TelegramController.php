@@ -54,8 +54,7 @@ class TelegramController extends Controller
 
                 }
             }
-            else{
-                if($text=='/restart'){
+            elseif($text=='/restart'){
                     $id=$message->getFrom()->getId();
                     $conversation=Conversation::where('chat_id',$id)->first();
                     if(is_null($conversation)){
@@ -112,7 +111,7 @@ class TelegramController extends Controller
                         \Telegram::sendMessage(
                             [
                                 'chat_id'=>$chat_id,
-                                'text'=>'',
+                                'text'=>$text,
                             ]);
 
                     }
@@ -134,7 +133,6 @@ class TelegramController extends Controller
 //                    'reply_markup' => $reply_markup
                     ]);
             }
-        }
 
         return 'ok';
         }
