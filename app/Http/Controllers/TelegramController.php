@@ -176,6 +176,79 @@ class TelegramController extends Controller
                                         'reply_markup'=>$reply_markup
                                     ]);
                                 break;
+                            case 3:
+                                $data=new Data();
+                                $data->chat_id=$id;
+                                $data->state=3;
+                                $data->data=$command;
+                                $data->save();
+                                $conversation->state=4;
+                                $conversation->save();
+                                $text='لطفا جنسیت خود را انتخاب نمایید.';
+                                $keyboard = [
+                                    ['زن','مرد'],
+                                ];
+
+                                $reply_markup =  \Telegram::replyKeyboardMarkup([
+                                    'keyboard' => $keyboard,
+                                    'resize_keyboard' => true,
+                                    'one_time_keyboard' => true
+                                ]);
+                                \Telegram::sendMessage(
+                                    [
+                                        'chat_id'=>$chat_id,
+                                        'text'=>$text,
+                                        'reply_markup'=>$reply_markup
+                                    ]);
+                                break;
+                            case 4:
+                                if($command!='مرد' && $command!='زن')
+                                {
+                                    $text='لطفا جنسیت خود را انتخاب نمایید.';
+                                    $keyboard = [
+                                        ['زن','مرد'],
+                                    ];
+
+                                    $reply_markup =  \Telegram::replyKeyboardMarkup([
+                                        'keyboard' => $keyboard,
+                                        'resize_keyboard' => true,
+                                        'one_time_keyboard' => true
+                                    ]);
+                                    \Telegram::sendMessage(
+                                        [
+                                            'chat_id'=>$chat_id,
+                                            'text'=>$text,
+                                            'reply_markup'=>$reply_markup
+                                        ]);
+                                }
+                                else{
+                                    $data=new Data();
+                                    $data->chat_id=$id;
+                                    $data->state=4;
+                                    $data->data=$command;
+                                    $data->save();
+                                    $conversation->state=5;
+                                    $conversation->save();
+                                    $text='لطفا رشته تحصیلی  خود را انتخاب نمایید.';
+                                    $dummy=\Config::get('majors.majors');
+                                    $keyboard=[];
+                                    foreach ($dummy as $key=>$value){
+                                        $keyboard[]=$key;
+                                    }
+                                    $reply_markup =  \Telegram::replyKeyboardMarkup([
+                                        'keyboard' => $keyboard,
+                                        'resize_keyboard' => true,
+                                        'one_time_keyboard' => true
+                                    ]);
+                                    \Telegram::sendMessage(
+                                        [
+                                            'chat_id'=>$chat_id,
+                                            'text'=>$text,
+                                            'reply_markup'=>$reply_markup
+                                        ]);
+                                }
+
+                                break;
                             default:
                                 $text='nothing';
                                 \Telegram::sendMessage(
