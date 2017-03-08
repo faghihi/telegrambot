@@ -8,7 +8,7 @@ use PDF;
 
 class Pdfcontroller extends Controller
 {
-    public function index()
+    public function index($id)
     {
 //        $data=Data::where('chat_id',$id)->first();
 //        $data=$data->data;
@@ -26,8 +26,7 @@ class Pdfcontroller extends Controller
         PDF::AddPage();
         PDF::writeHTML(view('pdf', ['salam'=>'اینم'])->render());
 //        PDF::output('salam.pdf');
-        $filename = 'uploads/salam.pdf';
+        $filename = public_path().'/uploads/'.$id.'pdf';
         PDF::output($filename, 'F');
-        PDF::output($filename, 'I');
     }
 }
