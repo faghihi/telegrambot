@@ -86,7 +86,7 @@ class StartCommand extends Command
 
         $this->replyWithMessage(
             [
-                'text'=>$text2,
+                'text'=>$text,
 
             ]);
 
