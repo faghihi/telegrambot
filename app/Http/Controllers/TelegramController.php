@@ -79,6 +79,11 @@ class TelegramController extends Controller
                     else{
                         $conversation=Conversation::find($conversation->id);
                         $conversation->delete();
+                        $datas=Data::where('chat_id',$id)->get();
+                        foreach ($datas as $data){
+                            $data=Data::find($data->id);
+                            $data->delete();
+                        }
                         \Telegram::sendMessage(
                             [
                                 'chat_id'=>$chat_id,
