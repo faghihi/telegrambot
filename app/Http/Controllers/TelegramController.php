@@ -248,6 +248,57 @@ class TelegramController extends Controller
                                         ]);
                                 }
                                 break;
+                            case 5:
+                                $array=array();
+                                foreach (\Config::get('majors.majors') as $key=>$value){
+                                    $array[]=$key;
+                                }
+                                if(!in_array($command,$array))
+                                {
+                                    $text='لطفا رشته تحصیلی  خود را انتخاب نمایید.';
+                                    $dummy=\Config::get('majors.majors');
+                                    $keyboard=array();
+                                    foreach ($dummy as $key=>$value){
+                                        $keyboard[][]=$key;
+                                    }
+                                    $reply_markup =  \Telegram::replyKeyboardMarkup([
+                                        'keyboard' => $keyboard,
+                                        'resize_keyboard' => true,
+                                        'one_time_keyboard' => true
+                                    ]);
+                                    \Telegram::sendMessage(
+                                        [
+                                            'chat_id'=>$chat_id,
+                                            'text'=>$text,
+                                            'reply_markup'=>$reply_markup
+                                        ]);
+                                }
+                                else{
+                                    $data=new Data();
+                                    $data->chat_id=$id;
+                                    $data->state=4;
+                                    $data1=\Config::get('majors.majors')[$command];
+                                    $data->data=$data1;
+                                    $data->save();
+                                    $conversation->state=6;
+                                    $conversation->save();
+                                    $text='لطفا میزان تحصیلات خود را انتخاب نمایید.';
+                                    $keyboard=[
+                                      ['زیر دیپلم','دیپلم','کارشناسی'],['کارشناسی ارشد','دکتری','فوق دکتری']
+                                    ];
+                                    $reply_markup =  \Telegram::replyKeyboardMarkup([
+                                        'keyboard' => $keyboard,
+                                        'resize_keyboard' => true,
+                                        'one_time_keyboard' => true
+                                    ]);
+                                    \Telegram::sendMessage(
+                                        [
+                                            'chat_id'=>$chat_id,
+                                            'text'=>$text,
+                                            'reply_markup'=>$reply_markup
+                                        ]);
+                                }
+                                break;
                             default:
                                 $text='nothing';
                                 \Telegram::sendMessage(
