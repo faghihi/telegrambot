@@ -48,7 +48,7 @@ Route::post('/376682828:AAE79WT571kMAmUk77iD3KJIni0ml7xixEs/webhook', function (
         ]
     ];
 
-    $reply_markup =  $this->getTelegram()->replyKeyboardMarkup([
+    $reply_markup = Telegram::replyKeyboardMarkup([
         'inline_keyboard' => $keyboard,
         'one_time_keyboard'=>true
     ]);
