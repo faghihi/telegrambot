@@ -236,7 +236,7 @@ class TelegramController extends Controller
 //                                        $keyboard[]=$key;
 //                                    }
                                     $keyboard=[
-                                        ['slam'],
+                                        'slam',
                                     ];
                                     $reply_markup =  \Telegram::replyKeyboardMarkup([
                                         'keyboard' => $keyboard,
