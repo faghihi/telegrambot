@@ -84,6 +84,39 @@ class TelegramController extends Controller
 
                     }
                 }
+                else{
+                    $id=$message->getFrom()->getId();
+                    $conversation=Conversation::where('chat_id',$id)->first();
+                    if(is_null($conversation)){
+                        $con=new Conversation();
+                        $con->chat_id=$id;
+                        $con->state='0';
+                        $con->save();
+                        $text=
+                            'سلام به بات جاب یار خوش آمدید.';
+                        $check=1;
+                        \Telegram::sendMessage(
+                            [
+                                'chat_id'=>$chat_id,
+                                'text'=>$text,
+                            ]);
+
+                    }
+                    else{
+                        $state=$conversation->state;
+                        switch ($state){
+                            case 0:
+                                $text='لطفا نام خود را وارد نمایید.';
+                                break;
+                        }
+                        \Telegram::sendMessage(
+                            [
+                                'chat_id'=>$chat_id,
+                                'text'=>'',
+                            ]);
+
+                    }
+                }
             }
             if($check==1){
                 \Telegram::sendMessage(
