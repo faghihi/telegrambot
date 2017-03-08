@@ -134,6 +134,7 @@ class TelegramController extends Controller
                         if($command=='/begin' && $state!=0){
                             $conversation->state = (int)$conversation->state-1;
                             $conversation->save();
+                            $state=$conversation->state;
                             $save=0;
                         }
                         switch ($state) {
