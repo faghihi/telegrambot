@@ -37,12 +37,11 @@ class StopCommand extends Command
         // They'll be in 'command-name' => 'Command Handler Class' format.
         $update=$this->getTelegram()->getWebhookUpdates();
         $chat_id=$update->getMessage()->getChat()->getId();
-        $text2=$update->
         $text=$update->getMessage()->getText();
         $update->getMessage()->getMessageId();
         $this->replyWithMessage(
             [
-                'text'=>$text2,
+                'text'=>$text,
 
             ]);
 

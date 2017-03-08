@@ -30,6 +30,13 @@ Route::post('/376682828:AAE79WT571kMAmUk77iD3KJIni0ml7xixEs/webhook', function (
 
     /** @var \Telegram\Bot\Objects\Update $update */
     $update = Telegram::commandsHandler(true);
+    $chat_id=$update->getChat()->getId();
+    $text=$update->getText();
+    $this->replyWithMessage(
+        [
+            'text'=>$text,
+
+        ]);
 
     return 'ok';
 });
