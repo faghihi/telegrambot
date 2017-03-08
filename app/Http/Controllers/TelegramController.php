@@ -40,23 +40,64 @@ class TelegramController extends Controller
                     $text=
                         'سلام به بات جاب یار خوش آمدید.';
                     $check=1;
+                    \Telegram::sendMessage(
+                        [
+                            'chat_id'=>$chat_id,
+                            'text'=>$text,
+//                    'reply_markup' => $reply_markup
+                        ]);
 
                 }
                 else{
-                    $text=$conversation->state;
+                    $text='شما هم اکنون در میانه راه پر کردن رزومه می باشید با این دستور رزومه شما از ابتدا آغاز خواهد شد آیا موافقید ؟!';
+                    $check=2;
+
                 }
             }
-            \Telegram::sendMessage(
-                [
-                    'chat_id'=>$chat_id,
-                    'text'=>$text,
-//                    'reply_markup' => $reply_markup
-                ]);
-            if($check){
+            else{
+                if($text=='/restart'){
+                    $id=$message->getFrom()->getId();
+                    $conversation=Conversation::where('chat_id',$id)->first();
+                    if(is_null($conversation)){
+                        $con=new Conversation();
+                        $con->chat_id=$id;
+                        $con->state='0';
+                        $con->save();
+                        $text=
+                            'سلام به بات جاب یار خوش آمدید.';
+                        $check=1;
+                        \Telegram::sendMessage(
+                            [
+                                'chat_id'=>$chat_id,
+                                'text'=>$text,
+                            ]);
+
+                    }
+                    else{
+                        $conversation=Conversation::find($conversation->id);
+                        $conversation->delete();
+                        \Telegram::sendMessage(
+                            [
+                                'chat_id'=>$chat_id,
+                                'text'=>'براش شروع مجدد از /start استفاده نمایید.',
+                            ]);
+
+                    }
+                }
+            }
+            if($check==1){
                 \Telegram::sendMessage(
                     [
                         'chat_id'=>$chat_id,
                         'text'=>'برای شروع از دستور /begin  استفاده نمایید.',
+//                    'reply_markup' => $reply_markup
+                    ]);
+            }
+            if($check==2){
+                \Telegram::sendMessage(
+                    [
+                        'chat_id'=>$chat_id,
+                        'text'=>' برای شروع جدید پر کردن رزومه  دستور /restart  استفاده نمایید. و برای ادامه از دستور /begin',
 //                    'reply_markup' => $reply_markup
                     ]);
             }
