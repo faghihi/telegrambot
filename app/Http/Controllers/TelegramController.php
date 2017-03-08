@@ -560,22 +560,23 @@ class TelegramController extends Controller
                                     ]);
                                 break;
                             case 12:
+                                $keyboard = [
+                                    [
+                                        ['text'=>'دریافت رزومه','url'=>'http://hamyad.herokuapp.com/getresume/'.$id]
+                                    ],
+                                ];
+
+                                $reply_markup =  \Telegram::replyKeyboardMarkup([
+                                    'inline_keyboard' => $keyboard,
+                                    'one_time_keyboard'=>true
+                                ]);
                                 \Telegram::sendMessage(
                                     [
                                         'chat_id'=>$chat_id,
                                         'text'=>'برای دریافت رزومه خود در قالب PDF به لینک زیر مراجعه نمایید.',
+                                        'reply_markup' => $reply_markup
                                     ]);
-//                                $dd=$this->pdfcreator->index($id);
-                                \Telegram::sendMessage(
-                                    [
-                                        'chat_id'=>$chat_id,
-                                        'text'=>'http://hamyad.herokuapp.com/getresume/'.$id,
-                                    ]);
-//                                \Telegram::sendDocument(
-//                                    [
-//                                        'chat_id'=>$chat_id,
-//                                        'document'=>"http://hamyad.herokuapp.com/uploads/$id.pdf",
-//                                    ]);
+
                                 break;
                             default:
                                 $text='nothing';
