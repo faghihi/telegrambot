@@ -353,7 +353,7 @@ class TelegramController extends Controller
                                 }
                                 if(!in_array($command,$array))
                                 {
-                                    $text='لطفا رشته تحصیلی  خود را انتخاب نمایید.';
+                                    $text='لطفا فیلد اصلی کار  خود را انتخاب نمایید.';
                                     $dummy=\Config::get('majors.majors');
                                     $keyboard=array();
                                     foreach ($dummy as $key=>$value){
@@ -381,9 +381,11 @@ class TelegramController extends Controller
                                     $conversation->state=8;
                                     $conversation->save();
                                     $text='لطفا زمینه دقیق شغلی  خود را انتخاب نمایید.';
-                                    $keyboard=[
-                                        ['زیر دیپلم','دیپلم','کارشناسی'],['کارشناسی ارشد','دکتری','فوق دکتری']
-                                    ];
+                                    $submajor=\Config::get('majors.'.$data1);
+                                    $keyboard=array();
+                                    foreach ($submajor as $key=>$value){
+                                        $keyboard[][]=$key;
+                                    }
                                     $reply_markup =  \Telegram::replyKeyboardMarkup([
                                         'keyboard' => $keyboard,
                                         'resize_keyboard' => true,
