@@ -153,15 +153,15 @@ class TelegramController extends Controller
                                 break;
                             case 2:
                                 if($command=='مایل نیستم'){
-                                    $data='نامعلوم';
+                                    $data1='نامعلوم';
                                 }
                                 else{
-                                    $data=$command;
+                                    $data1=$command;
                                 }
                                 $data=new Data();
                                 $data->chat_id=$id;
                                 $data->state=2;
-                                $data->data=$data;
+                                $data->data=$data1;
                                 $data->save();
                                 $conversation->state=3;
                                 $conversation->save();
