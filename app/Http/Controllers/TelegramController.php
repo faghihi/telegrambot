@@ -126,6 +126,8 @@ class TelegramController extends Controller
                                 $data->data=$command;
                                 $data->save();
                                 $text='اگر مایل هستید سن خود را وارد نمایید.';
+                                $conversation->state=2;
+                                $conversation->save();
                                 $keyboard = [
                                     ['مایل نیستم'],
                                 ];
