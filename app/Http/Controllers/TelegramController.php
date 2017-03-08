@@ -151,6 +151,31 @@ class TelegramController extends Controller
 
 
                                 break;
+                            case 2:
+                                if($command=='مایل نیستم'){
+                                    $data='نامعلوم';
+                                }
+                                else{
+                                    $data=$command;
+                                }
+                                $data=new Data();
+                                $data->chat_id=$id;
+                                $data->state=2;
+                                $data->data=$data;
+                                $data->save();
+                                $conversation->state=3;
+                                $conversation->save();
+                                $text='لطفا محل زندگی خود را وارد نمایید.';
+                                $reply_markup =  \Telegram::replyKeyboardMarkup([
+                                    'hide_keyboard' => true
+                                ]);
+                                \Telegram::sendMessage(
+                                    [
+                                        'chat_id'=>$chat_id,
+                                        'text'=>$text,
+                                        'reply_markup'=>$reply_markup
+                                    ]);
+                                break;
                             default:
                                 $text='nothing';
                                 \Telegram::sendMessage(
