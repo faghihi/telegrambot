@@ -84,3 +84,8 @@ Route::get('test',function (){
     }
     return $keyboard;
 });
+
+Route::get('test2',function (){
+    $data1='111';
+    return \Config::get("majors.$data1");
+});
