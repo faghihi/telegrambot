@@ -166,29 +166,11 @@ class TelegramController extends Controller
                                 $conversation->state=3;
                                 $conversation->save();
                                 $text='لطفا محل زندگی خود را وارد نمایید.';
-                                $reply_markup =  \Telegram::replyKeyboardMarkup([
-                                    'hide_keyboard' => true
-                                ]);
-                                \Telegram::sendMessage(
-                                    [
-                                        'chat_id'=>$chat_id,
-                                        'text'=>$text,
-                                        'reply_markup'=>$reply_markup
-                                    ]);
-                                break;
-                            case 3:
-                                $data=new Data();
-                                $data->chat_id=$id;
-                                $data->state=3;
-                                $data->data=$command;
-                                $data->save();
-                                $conversation->state=4;
-                                $conversation->save();
-                                $text='لطفا جنسیت خود را انتخاب نمایید.';
-                                $keyboard = [
-                                    ['زن','مرد'],
-                                ];
-
+                                $dummy=\Config::get('majors.cities');
+                                $keyboard=array();
+                                foreach ($dummy as $key=>$value){
+                                    $keyboard[][]=$key;
+                                }
                                 $reply_markup =  \Telegram::replyKeyboardMarkup([
                                     'keyboard' => $keyboard,
                                     'resize_keyboard' => true,
@@ -200,6 +182,59 @@ class TelegramController extends Controller
                                         'text'=>$text,
                                         'reply_markup'=>$reply_markup
                                     ]);
+                                break;
+                            case 3:
+                                $array=array();
+                                foreach (\Config::get('majors.cities') as $key=>$value){
+                                    $array[]=$key;
+                                }
+                                if(!in_array($command,$array))
+                                {
+                                    $text='لطفا محل زندگی خود را وارد نمایید.';
+                                    $dummy=\Config::get('majors.cities');
+                                    $keyboard=array();
+                                    foreach ($dummy as $key=>$value){
+                                        $keyboard[][]=$key;
+                                    }
+                                    $reply_markup =  \Telegram::replyKeyboardMarkup([
+                                        'keyboard' => $keyboard,
+                                        'resize_keyboard' => true,
+                                        'one_time_keyboard' => true
+                                    ]);
+                                    \Telegram::sendMessage(
+                                        [
+                                            'chat_id'=>$chat_id,
+                                            'text'=>$text,
+                                            'reply_markup'=>$reply_markup
+                                        ]);
+                                }
+                                else{
+                                    $data=new Data();
+                                    $data->chat_id=$id;
+                                    $data->state=3;
+                                    $data1=\Config::get('majors.cities')[$command];
+                                    $data->data=$data1;
+                                    $data->save();
+                                    $conversation->state=4;
+                                    $conversation->save();
+                                    $text='لطفا جنسیت خود را انتخاب نمایید.';
+                                    $keyboard = [
+                                        ['زن','مرد'],
+                                    ];
+
+                                    $reply_markup =  \Telegram::replyKeyboardMarkup([
+                                        'keyboard' => $keyboard,
+                                        'resize_keyboard' => true,
+                                        'one_time_keyboard' => true
+                                    ]);
+                                    \Telegram::sendMessage(
+                                        [
+                                            'chat_id'=>$chat_id,
+                                            'text'=>$text,
+                                            'reply_markup'=>$reply_markup
+                                        ]);
+                                }
+
                                 break;
                             case 4:
                                 if($command!='مرد' && $command!='زن')
