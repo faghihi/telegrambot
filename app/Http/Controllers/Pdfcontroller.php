@@ -26,8 +26,9 @@ class Pdfcontroller extends Controller
         PDF::AddPage();
         PDF::writeHTML(view('pdf', ['salam'=>'اینم'])->render());
 //        PDF::output('salam.pdf');
-        $filename = 'http://hamyad.herokuapp.com'.'/uploads/'.'test'.'.pdf';
-        PDF::output($filename, 'F');
+        $filename = public_path().'/uploads/'.'test'.'.pdf';
+        return $filename;
+//        PDF::output($filename, 'F');
         return 1;
     }
 }
