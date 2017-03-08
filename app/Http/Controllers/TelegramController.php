@@ -26,13 +26,14 @@ class TelegramController extends Controller
 //        ]);
         if ($message !== null && $message->has('text')) {
             $chat_id=$message->getChat()->getId();
+            $id=$update->getMessage()->getContact()->getUserId();
             $text=$message->getText();
             if($text=='/start'){
-                $conversation=Conversation::where('chat_id',$chat_id)->first();
+                $conversation=Conversation::where('chat_id',$id)->first();
                 if(is_null($conversation)){
                     $text='no data available';
                     $con=new Conversation();
-                    $con->chat_id=$chat_id;
+                    $con->chat_id=$id;
                     $con->state='0';
                     $con->save();
                     $text=[
