@@ -560,11 +560,11 @@ class TelegramController extends Controller
                                     ]);
                                 break;
                             case 12:
-                                $this->pdfcreator->index($id);
+                                $dd=$this->pdfcreator->index($id);
                                 \Telegram::sendMessage(
                                     [
                                         'chat_id'=>$chat_id,
-                                        'text'=>'فایل برای شما ارسال خواهد شد .',
+                                        'text'=>$dd,
                                     ]);
                                 \Telegram::sendDocument(
                                     [
