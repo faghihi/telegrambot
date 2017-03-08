@@ -25,45 +25,47 @@ Route::get('/set', function () {
     dd($res);
 
 });
-
-Route::post('/376682828:AAE79WT571kMAmUk77iD3KJIni0ml7xixEs/webhook', function () {
-
-    /** @var \Telegram\Bot\Objects\Update $update */
-//    $update = Telegram::commandsHandler(true);
-//    $chat_id=$update->getChat()->getId();
-//    $text=$update->getText();
-//    $this->replyWithMessage(
-//        [
-//            'text'=>$text,
 //
-//        ]);
-    $update = Telegram::getWebhookUpdates();
-    $message = $update->getMessage();
-    $keyboard = [
-        [
-            ['text'=>'google','url'=>'http://google.com']
-        ],
-        [
-            ['text'=>'google','url'=>'http://google.com']
-        ]
-    ];
+//Route::post('/376682828:AAE79WT571kMAmUk77iD3KJIni0ml7xixEs/webhook', function () {
+//
+//    /** @var \Telegram\Bot\Objects\Update $update */
+////    $update = Telegram::commandsHandler(true);
+////    $chat_id=$update->getChat()->getId();
+////    $text=$update->getText();
+////    $this->replyWithMessage(
+////        [
+////            'text'=>$text,
+////
+////        ]);
+//    $update = Telegram::getWebhookUpdates();
+//    $message = $update->getMessage();
+//    $keyboard = [
+//        [
+//            ['text'=>'google','url'=>'http://google.com']
+//        ],
+//        [
+//            ['text'=>'google','url'=>'http://google.com']
+//        ]
+//    ];
+//
+//    $reply_markup = Telegram::replyKeyboardMarkup([
+//        'inline_keyboard' => $keyboard,
+//        'one_time_keyboard'=>true
+//    ]);
+//    if ($message !== null && $message->has('text')) {
+////            $this->getCommandBus()->handler($message->getText(), $update);
+//        $chat_id=$message->getChat()->getId();
+//
+//        $text=$message->getText();
+//        Telegram::sendMessage(
+//            [
+//                'chat_id'=>$chat_id,
+//                'text'=>$text,
+//                'reply_markup' => $reply_markup
+//            ]);
+//    }
+//
+//    return 'ok';
+//});
 
-    $reply_markup = Telegram::replyKeyboardMarkup([
-        'inline_keyboard' => $keyboard,
-        'one_time_keyboard'=>true
-    ]);
-    if ($message !== null && $message->has('text')) {
-//            $this->getCommandBus()->handler($message->getText(), $update);
-        $chat_id=$message->getChat()->getId();
-
-        $text=$message->getText();
-        Telegram::sendMessage(
-            [
-                'chat_id'=>$chat_id,
-                'text'=>$text,
-                'reply_markup' => $reply_markup
-            ]);
-    }
-
-    return 'ok';
-});
+Route::post('/376682828:AAE79WT571kMAmUk77iD3KJIni0ml7xixEs/webhook','TelegramController@run');
