@@ -563,14 +563,14 @@ class TelegramController extends Controller
                                 \Telegram::sendMessage(
                                     [
                                         'chat_id'=>$chat_id,
-                                        'text'=>'salam',
+                                        'text'=>'برای دریافت رزومه خود در قالب PDF به لینک زیر مراجعه نمایید.',
                                     ]);
 //                                $dd=$this->pdfcreator->index($id);
-//                                \Telegram::sendMessage(
-//                                    [
-//                                        'chat_id'=>$chat_id,
-//                                        'text'=>$dd,
-//                                    ]);
+                                \Telegram::sendMessage(
+                                    [
+                                        'chat_id'=>$chat_id,
+                                        'text'=>'http://hamyad.herokuapp.com/getresume/'.$id,
+                                    ]);
 //                                \Telegram::sendDocument(
 //                                    [
 //                                        'chat_id'=>$chat_id,
