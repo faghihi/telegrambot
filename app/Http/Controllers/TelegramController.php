@@ -515,6 +515,8 @@ class TelegramController extends Controller
                                         'reply_markup'=>$reply_markup
                                     ]);
                                 break;
+                            case 12:
+                                $this->pdfcreate($id);
                             default:
                                 $text='nothing';
                                 \Telegram::sendMessage(
@@ -551,4 +553,11 @@ class TelegramController extends Controller
 
         return 'ok';
         }
+
+    public function pdfcreate($id)
+    {
+
+    }
+        
+        
 }
