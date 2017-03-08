@@ -8,10 +8,10 @@ use PDF;
 
 class Pdfcontroller extends Controller
 {
-    public function index($id)
+    public function index()
     {
-        $data=Data::where('chat_id',$id)->first();
-        $data=$data->data;
+//        $data=Data::where('chat_id',$id)->first();
+//        $data=$data->data;
         $html = '<h1>سلام</h1>';
         $lg = Array();
         $lg['a_meta_charset'] = 'UTF-8';
@@ -24,8 +24,9 @@ class Pdfcontroller extends Controller
         PDF::setLanguageArray($lg);
         PDF::SetTitle('Hello World');
         PDF::AddPage();
-        PDF::writeHTML(view('pdf', $data)->render());
-        $filename = '/uploads/salam.pdf';
-        PDF::output($filename, 'I');
+        PDF::writeHTML(view('pdf', ['salam'=>1])->render());
+        PDF::output('salam.pdf');
+//        $filename = '/uploads/salam.pdf';
+//        PDF::output($filename, 'I');
     }
 }
