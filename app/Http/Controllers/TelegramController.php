@@ -26,6 +26,7 @@ class TelegramController extends Controller
 //        ]);
         if ($message !== null && $message->has('text')) {
             $chat_id=$message->getChat()->getId();
+            $check=0;
             $text=$message->getText();
             if($text=='/start'){
                 $id=$message->getFrom()->getId();
@@ -38,6 +39,7 @@ class TelegramController extends Controller
                     $con->save();
                     $text=
                         'سلام به بات جاب یار خوش آمدید.';
+                    $check=1;
 
                 }
                 else{
@@ -50,6 +52,14 @@ class TelegramController extends Controller
                     'text'=>$text,
 //                    'reply_markup' => $reply_markup
                 ]);
+            if($check){
+                \Telegram::sendMessage(
+                    [
+                        'chat_id'=>$chat_id,
+                        'text'=>'برای شروع از دستور /begin  استفاده نمایید.',
+//                    'reply_markup' => $reply_markup
+                    ]);
+            }
         }
 
         return 'ok';
