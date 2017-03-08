@@ -9,7 +9,7 @@ class Pdfcontroller extends Controller
 {
     public function index()
     {
-        $html = '<h1>Hello World</h1>';
+        $html = '<h1>سلام</h1>';
 
         PDF::SetTitle('Hello World');
         PDF::AddPage();
