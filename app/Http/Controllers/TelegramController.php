@@ -231,12 +231,8 @@ class TelegramController extends Controller
                                     $conversation->save();
                                     $text='لطفا رشته تحصیلی  خود را انتخاب نمایید.';
 //                                    $dummy=\Config::get('majors.majors');
-//                                    $keyboard=[];
-//                                    foreach ($dummy as $key=>$value){
-//                                        $keyboard[]=$key;
-//                                    }
-                                    $keyboard=[];
-                                    $keyboard[0][]='salam';
+                                    $keyboard=array();
+                                    $keyboard[][]='salam';
                                     $reply_markup =  \Telegram::replyKeyboardMarkup([
                                         'keyboard' => $keyboard,
                                         'resize_keyboard' => true,
