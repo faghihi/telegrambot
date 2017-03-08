@@ -27,6 +27,6 @@ class Pdfcontroller extends Controller
         PDF::writeHTML(view('pdf', ['salam'=>$id])->render());
 //        PDF::output('salam.pdf');
 //        $filename = public_path().'/uploads/salam.pdf';
-        PDF::output('resume.pdf', 'D');
+        PDF::output('resume.pdf', 'I');
     }
 }
