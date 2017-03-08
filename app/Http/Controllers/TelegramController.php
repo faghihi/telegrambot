@@ -36,10 +36,11 @@ class TelegramController extends Controller
                     $con->chat_id=$id;
                     $con->state='0';
                     $con->save();
-                    $text=[
-                        'سلام به بات جاب یار خوش آمدید.',
-                        'براش شروع از دستور /begin استفاده نمایید.',
-                    ];
+//                    $text=[
+//                        'سلام به بات جاب یار خوش آمدید.',
+//                        'براش شروع از دستور /begin استفاده نمایید.',
+//                    ];
+                    $text=$id;
 
                 }
                 else{
@@ -49,7 +50,7 @@ class TelegramController extends Controller
             \Telegram::sendMessage(
                 [
                     'chat_id'=>$chat_id,
-                    'text'=>$text,
+                    'text'=>$id,
 //                    'reply_markup' => $reply_markup
                 ]);
         }
