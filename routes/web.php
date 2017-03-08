@@ -37,14 +37,14 @@ Route::post('/376682828:AAE79WT571kMAmUk77iD3KJIni0ml7xixEs/webhook', function (
 //            'text'=>$text,
 //
 //        ]);
-    $update = $this->getWebhookUpdates();
+    $update = Telegram::getWebhookUpdates();
     $message = $update->getMessage();
 
     if ($message !== null && $message->has('text')) {
 //            $this->getCommandBus()->handler($message->getText(), $update);
         $chat_id=$message->getChat()->getId();
         $text=$message->getText();
-        $this->replyWithMessage(
+        Telegram::replyWithMessage(
             [
                 'text'=>$text,
 
