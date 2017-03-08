@@ -565,7 +565,7 @@ class TelegramController extends Controller
                                         'chat_id'=>$chat_id,
                                         'text'=>'salam',
                                     ]);
-                                $dd=$this->pdfcreator->index($id);
+//                                $dd=$this->pdfcreator->index($id);
 //                                \Telegram::sendMessage(
 //                                    [
 //                                        'chat_id'=>$chat_id,
