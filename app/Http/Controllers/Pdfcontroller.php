@@ -15,6 +15,8 @@ class Pdfcontroller extends Controller
         $lg['a_meta_dir'] = 'rtl';
         $lg['a_meta_language'] = 'fa';
         $lg['w_page'] = 'page';
+        PDF::addTTFfont('/Fonts/dejavunus.php','',12);
+        PDF::SetFont('dejavusans', '', 12);
 
 // set some language-dependent strings (optional)
         PDF::setLanguageArray($lg);
