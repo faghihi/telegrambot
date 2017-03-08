@@ -560,17 +560,22 @@ class TelegramController extends Controller
                                     ]);
                                 break;
                             case 12:
+                                \Telegram::sendMessage(
+                                    [
+                                        'chat_id'=>$chat_id,
+                                        'text'=>'salam',
+                                    ]);
                                 $dd=$this->pdfcreator->index($id);
                                 \Telegram::sendMessage(
                                     [
                                         'chat_id'=>$chat_id,
                                         'text'=>$dd,
                                     ]);
-                                \Telegram::sendDocument(
-                                    [
-                                        'chat_id'=>$chat_id,
-                                        'document'=>"http://hamyad.herokuapp.com/uploads/$id.pdf",
-                                    ]);
+//                                \Telegram::sendDocument(
+//                                    [
+//                                        'chat_id'=>$chat_id,
+//                                        'document'=>"http://hamyad.herokuapp.com/uploads/$id.pdf",
+//                                    ]);
                                 break;
                             default:
                                 $text='nothing';
