@@ -384,8 +384,8 @@ class TelegramController extends Controller
                                     $data1=(int)$data1;
                                     $submajor=\Config::get("majors.$data1");
                                     $keyboard=array();
-                                    foreach ($submajor as $key=>$value){
-                                        $keyboard[][]=$key;
+                                    foreach ($submajor as $value){
+                                        $keyboard[][]=$value;
                                     }
 //                                    $keyboard=[['salam']];
                                     $reply_markup = \Telegram::replyKeyboardMarkup([
