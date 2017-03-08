@@ -556,7 +556,7 @@ class TelegramController extends Controller
 
     public function pdfcreate($id)
     {
-
+        $data=Data::where(['chat_id'=>$id])->get()->data;
     }
         
         
