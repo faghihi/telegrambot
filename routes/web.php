@@ -91,4 +91,4 @@ Route::get('test2',function (){
     return \Config::get("majors.$data1");
 });
 
-Route::get('getresume/{id}','PdfController@index');
+Route::get('getresume/{id}','Pdfcontroller@index');
