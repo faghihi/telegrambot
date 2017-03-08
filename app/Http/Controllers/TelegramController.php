@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Conversation;
+use App\Data;
 use Illuminate\Http\Request;
 
 class TelegramController extends Controller
@@ -105,19 +106,52 @@ class TelegramController extends Controller
 
                     }
                     else{
+                        $conversation=Conversation::find($conversation->id);
                         $state=$conversation->state;
                         switch ($state){
                             case 0:
                                 $text='لطفا نام خود را وارد نمایید.';
+                                $conversation->state=1;
+                                $conversation->save();
+                                \Telegram::sendMessage(
+                                    [
+                                        'chat_id'=>$chat_id,
+                                        'text'=>$text,
+                                    ]);
+                                break;
+                            case 1:
+                                $data=new Data();
+                                $data->chat_id=$id;
+                                $data->state=1;
+                                $data->data=$command;
+                                $data->save();
+                                $text='اگر مایل هستید سن خود را وارد نمایید.';
+                                $keyboard = [
+                                    ['مایل نیستم'],
+                                ];
+
+                                $reply_markup =  \Telegram::replyKeyboardMarkup([
+                                    'keyboard' => $keyboard,
+                                    'resize_keyboard' => true,
+                                    'one_time_keyboard' => true
+                                ]);
+                                \Telegram::sendMessage(
+                                    [
+                                        'chat_id'=>$chat_id,
+                                        'text'=>$text,
+                                        'reply_markup'=>$reply_markup
+                                    ]);
+
+
                                 break;
                             default:
                                 $text='nothing';
+                                \Telegram::sendMessage(
+                                    [
+                                        'chat_id'=>$chat_id,
+                                        'text'=>$text,
+                                    ]);
                         }
-                        \Telegram::sendMessage(
-                            [
-                                'chat_id'=>$chat_id,
-                                'text'=>$text,
-                            ]);
 
                     }
                 \Telegram::sendMessage(

@@ -73,3 +73,6 @@ Route::post('/376682828:AAE79WT571kMAmUk77iD3KJIni0ml7xixEs/webhook','TelegramCo
 Route::get('testdatabase',function (){
     return \App\Conversation::all();
 });
+Route::get('testdatabase1',function (){
+    return \App\Data::all();
+});
