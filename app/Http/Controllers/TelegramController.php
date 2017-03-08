@@ -230,11 +230,14 @@ class TelegramController extends Controller
                                     $conversation->state=5;
                                     $conversation->save();
                                     $text='لطفا رشته تحصیلی  خود را انتخاب نمایید.';
-                                    $dummy=\Config::get('majors.majors');
-                                    $keyboard=[];
-                                    foreach ($dummy as $key=>$value){
-                                        $keyboard[]=$key;
-                                    }
+//                                    $dummy=\Config::get('majors.majors');
+//                                    $keyboard=[];
+//                                    foreach ($dummy as $key=>$value){
+//                                        $keyboard[]=$key;
+//                                    }
+                                    $keyboard=[
+                                        ['slam'],
+                                    ];
                                     $reply_markup =  \Telegram::replyKeyboardMarkup([
                                         'keyboard' => $keyboard,
                                         'resize_keyboard' => true,
@@ -247,7 +250,6 @@ class TelegramController extends Controller
                                             'reply_markup'=>$reply_markup
                                         ]);
                                 }
-
                                 break;
                             default:
                                 $text='nothing';
