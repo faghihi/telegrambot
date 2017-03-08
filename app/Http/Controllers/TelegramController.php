@@ -30,8 +30,8 @@ class TelegramController extends Controller
         if ($message !== null && $message->has('text')) {
             $chat_id=$message->getChat()->getId();
             $check=0;
-            $text=$message->getText();
-            if($text=='/start'){
+            $command=$message->getText();
+            if($command=='/start'){
                 $id=$message->getFrom()->getId();
                 $conversation=Conversation::where('chat_id',$id)->first();
                 if(is_null($conversation)){
@@ -57,7 +57,7 @@ class TelegramController extends Controller
 
                 }
             }
-            elseif($text=='/restart'){
+            elseif($command=='/restart'){
                     $id=$message->getFrom()->getId();
                     $conversation=Conversation::where('chat_id',$id)->first();
                     if(is_null($conversation)){
@@ -87,41 +87,43 @@ class TelegramController extends Controller
                     }
                 }
             else{
-//                    $id=$message->getFrom()->getId();
-//                    $conversation=Conversation::where('chat_id',$id)->first();
-//                    if(is_null($conversation)){
-//                        $con=new Conversation();
-//                        $con->chat_id=$id;
-//                        $con->state='0';
-//                        $con->save();
-//                        $text=
-//                            'سلام به بات جاب یار خوش آمدید.';
-//                        $check=1;
-//                        \Telegram::sendMessage(
-//                            [
-//                                'chat_id'=>$chat_id,
-//                                'text'=>$text,
-//                            ]);
-//
-//                    }
-//                    else{
-//                        $state=$conversation->state;
-//                        switch ($state){
-//                            case 0:
-//                                $text='لطفا نام خود را وارد نمایید.';
-//                                break;
-//                        }
-//                        \Telegram::sendMessage(
-//                            [
-//                                'chat_id'=>$chat_id,
-//                                'text'=>$text,
-//                            ]);
-//
-//                    }
-                \Telegram::sendMessage(
+                    $id=$message->getFrom()->getId();
+                    $conversation=Conversation::where('chat_id',$id)->first();
+                    if(is_null($conversation)){
+                        $con=new Conversation();
+                        $con->chat_id=$id;
+                        $con->state='0';
+                        $con->save();
+                        $text=
+                            'سلام به بات جاب یار خوش آمدید.';
+                        $check=1;
+                        \Telegram::sendMessage(
                             [
                                 'chat_id'=>$chat_id,
                                 'text'=>$text,
+                            ]);
+
+                    }
+                    else{
+                        $state=$conversation->state;
+                        switch ($state){
+                            case 0:
+                                $text='لطفا نام خود را وارد نمایید.';
+                                break;
+                            default:
+                                $text='nothing';
+                        }
+                        \Telegram::sendMessage(
+                            [
+                                'chat_id'=>$chat_id,
+                                'text'=>$text,
+                            ]);
+
+                    }
+                \Telegram::sendMessage(
+                            [
+                                'chat_id'=>$chat_id,
+                                'text'=>$command,
                             ]);
             }
         }
