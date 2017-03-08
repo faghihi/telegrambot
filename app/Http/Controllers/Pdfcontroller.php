@@ -28,7 +28,6 @@ class Pdfcontroller extends Controller
 //        PDF::output('salam.pdf');
 //        $filename = public_path().'/uploads/salam.pdf';
         $filename = 'uploads/salam.pdf';
-        return $filename;
         PDF::output($filename, 'F');
     }
 }
