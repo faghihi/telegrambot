@@ -131,7 +131,7 @@ class TelegramController extends Controller
                     else{
                         $conversation=Conversation::find($conversation->id);
                         $state=$conversation->state;
-                        if($command=='/begin' && $state!=0){
+                        if($command=='/begin' && $state!=0 && $state!=12){
                             $conversation->state = (int)$conversation->state-1;
                             $conversation->save();
                             $state=$conversation->state;
