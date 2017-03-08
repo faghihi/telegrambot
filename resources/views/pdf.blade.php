@@ -11,7 +11,7 @@
 <body>
 
 <div class="container">
-    <h2>Pdf data</h2>
+    <h2>{{$salam}}</h2>
 
 </div>
 
