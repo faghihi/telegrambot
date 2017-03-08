@@ -382,10 +382,11 @@ class TelegramController extends Controller
                                     $conversation->save();
                                     $text='لطفا زمینه دقیق شغلی  خود را انتخاب نمایید.';
                                     $submajor=\Config::get("majors.$data1");
-                                    $keyboard=array();
-                                    foreach ($submajor as $key=>$value){
-                                        $keyboard[][]=$key;
-                                    }
+//                                    $keyboard=array();
+//                                    foreach ($submajor as $key=>$value){
+//                                        $keyboard[][]=$key;
+//                                    }
+                                    $keyboard=[['salam']];
                                     $reply_markup =  \Telegram::replyKeyboardMarkup([
                                         'keyboard' => $keyboard,
                                         'resize_keyboard' => true,
