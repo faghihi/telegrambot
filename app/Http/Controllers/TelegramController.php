@@ -28,7 +28,7 @@ class TelegramController extends Controller
             $chat_id=$message->getChat()->getId();
             $text=$message->getText();
             if($text=='/start'){
-                $id=$update->getMessage()->getContact()->getUserId();
+                $id=$message->getChat()->getUsername();
                 $conversation=Conversation::where('chat_id',$id)->first();
                 if(is_null($conversation)){
                     $text='no data available';
