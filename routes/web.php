@@ -25,6 +25,7 @@ Route::get('/set', function () {
     dd($res);
 
 });
+Route::get('/pdf','Pdfcontroller@index');
 //
 //Route::post('/376682828:AAE79WT571kMAmUk77iD3KJIni0ml7xixEs/webhook', function () {
 //
