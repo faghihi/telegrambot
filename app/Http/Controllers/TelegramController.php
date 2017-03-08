@@ -383,11 +383,11 @@ class TelegramController extends Controller
                                     $text='لطفا زمینه دقیق شغلی  خود را انتخاب نمایید.';
                                     $data1=(int)$data1;
                                     $submajor=\Config::get("majors.$data1");
-//                                    $keyboard=array();
-//                                    foreach ($submajor as $key=>$value){
-//                                        $keyboard[][]=$key;
-//                                    }
-                                    $keyboard=[['salam']];
+                                    $keyboard=array();
+                                    foreach ($submajor as $key=>$value){
+                                        $keyboard[][]=$key;
+                                    }
+//                                    $keyboard=[['salam']];
                                     $reply_markup = \Telegram::replyKeyboardMarkup([
                                         'keyboard' => $keyboard,
                                         'resize_keyboard' => true,
