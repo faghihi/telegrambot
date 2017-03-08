@@ -473,14 +473,8 @@ class TelegramController extends Controller
                                 $conversation->state=11;
                                 $conversation->save();
                                 $text='لطفا شماره تماس همراه خود را وارد نمایید.';
-                                $keyboard = [
-                                    ['دریافت رزومه'],
-                                ];
-
                                 $reply_markup =  \Telegram::replyKeyboardMarkup([
-                                    'keyboard' => $keyboard,
-                                    'resize_keyboard' => true,
-                                    'one_time_keyboard' => true
+                                    'hide_keyboard' => true
                                 ]);
                                 \Telegram::sendMessage(
                                     [
@@ -498,8 +492,14 @@ class TelegramController extends Controller
                                 $conversation->state=12;
                                 $conversation->save();
                                 $text='از اینکه رزومه خود را در جاب یار کامل کرده اید متشکریم .';
+                                $keyboard = [
+                                    ['دریافت رزومه'],
+                                ];
+
                                 $reply_markup =  \Telegram::replyKeyboardMarkup([
-                                    'hide_keyboard' => true
+                                    'keyboard' => $keyboard,
+                                    'resize_keyboard' => true,
+                                    'one_time_keyboard' => true
                                 ]);
                                 \Telegram::sendMessage(
                                     [
