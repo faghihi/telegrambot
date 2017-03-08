@@ -381,7 +381,7 @@ class TelegramController extends Controller
                                     $conversation->state=8;
                                     $conversation->save();
                                     $text='لطفا زمینه دقیق شغلی  خود را انتخاب نمایید.';
-                                    $submajor=\Config::get('majors.'.$data1);
+                                    $submajor=\Config::get("majors.$data1");
                                     $keyboard=array();
                                     foreach ($submajor as $key=>$value){
                                         $keyboard[][]=$key;
@@ -400,13 +400,16 @@ class TelegramController extends Controller
                                 }
                                 break;
                             case 8:
-                                $array=['زیر دیپلم','دیپلم','کارشناسی','کارشناسی ارشد','دکتری','فوق دکتری'];
-                                if(!in_array($command,$array))
+                                $data1=Data::where(['chat_id'=>$id,'state'=>7])->first()->data;
+                                $submajor=\Config::get('majors.'.$data1);
+                                if(!in_array($command,$submajor))
                                 {
-                                    $text='لطفا میزان تحصیلات خود را انتخاب نمایید.';
-                                    $keyboard=[
-                                        ['زیر دیپلم','دیپلم','کارشناسی'],['کارشناسی ارشد','دکتری','فوق دکتری']
-                                    ];
+                                    $text='لطفا زمینه دقیق شغلی  خود را انتخاب نمایید.';
+                                    $submajor=\Config::get('majors.'.$data1);
+                                    $keyboard=array();
+                                    foreach ($submajor as $key=>$value){
+                                        $keyboard[][]=$key;
+                                    }
                                     $reply_markup =  \Telegram::replyKeyboardMarkup([
                                         'keyboard' => $keyboard,
                                         'resize_keyboard' => true,
