@@ -44,8 +44,9 @@ Route::post('/376682828:AAE79WT571kMAmUk77iD3KJIni0ml7xixEs/webhook', function (
 //            $this->getCommandBus()->handler($message->getText(), $update);
         $chat_id=$message->getChat()->getId();
         $text=$message->getText();
-        Telegram::replyWithMessage(
+        Telegram::sendMessage(
             [
+                'chat_id'=>$chat_id,
                 'text'=>$text,
 
             ]);
