@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Data;
 use Illuminate\Http\Request;
 use PDF;
 
 class Pdfcontroller extends Controller
 {
-    public function index()
+    public function index($id)
     {
+        $data=Data::where('chat_id',$id)->first();
+        $data=$data->data;
         $html = '<h1>سلام</h1>';
         $lg = Array();
         $lg['a_meta_charset'] = 'UTF-8';
@@ -21,8 +24,8 @@ class Pdfcontroller extends Controller
         PDF::setLanguageArray($lg);
         PDF::SetTitle('Hello World');
         PDF::AddPage();
-        PDF::writeHTML($html, true, false, true, false, '');
-
-        PDF::Output('hello_world.pdf');
+        PDF::writeHTML(view('pdf', $data)->render());
+        $filename = '/uploads/salam.pdf';
+        PDF::output($filename, 'I');
     }
 }

@@ -5,9 +5,18 @@ namespace App\Http\Controllers;
 use App\Conversation;
 use App\Data;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Pdfcontroller;
 
 class TelegramController extends Controller
 {
+
+    protected  $pdfcreator;
+
+    public function _construct(Pdfcontroller $item)
+    {
+        $this->pdfcreator=$item;
+    }
+
     /**
      * @return string
      */
@@ -551,7 +560,8 @@ class TelegramController extends Controller
                                     ]);
                                 break;
                             case 12:
-                                $this->pdfcreate($id);
+                                $this->pdfcreator->index($id);
+                                break;
                             default:
                                 $text='nothing';
                                 \Telegram::sendMessage(
@@ -589,10 +599,6 @@ class TelegramController extends Controller
         return 'ok';
         }
 
-    public function pdfcreate($id)
-    {
-        $data=Data::where(['chat_id'=>$id])->get()->data;
-    }
         
         
 }
