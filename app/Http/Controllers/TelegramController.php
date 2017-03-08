@@ -35,6 +35,11 @@ class TelegramController extends Controller
                     $con->chat_id=$chat_id;
                     $con->state='0';
                     $con->save();
+                    $text=[
+                        'سلام به بات جاب یار خوش آمدید.',
+                        'براش شروع از دستور /begin استفاده نمایید.',
+                    ];
+
                 }
                 else{
                     $text=$conversation->state;
