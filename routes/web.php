@@ -76,3 +76,11 @@ Route::get('testdatabase',function (){
 Route::get('testdatabase1',function (){
     return \App\Data::all();
 });
+Route::get('test',function (){
+    $dummy=\Config::get('majors.majors');
+    $keyboard=[];
+    foreach ($dummy as $key=>$value) {
+        $keyboard[] = $key;
+    }
+    return $keyboard;
+});
