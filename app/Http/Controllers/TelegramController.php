@@ -588,11 +588,6 @@ class TelegramController extends Controller
                         }
 
                     }
-                \Telegram::sendMessage(
-                            [
-                                'chat_id'=>$chat_id,
-                                'text'=>$command,
-                            ]);
             }
         }
             if($check==1){
