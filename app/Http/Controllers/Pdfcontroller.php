@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Data;
 use Illuminate\Http\Request;
 use PDF;
+use TCPDF_FONTS;
 
 class Pdfcontroller extends Controller
 {
@@ -18,7 +19,7 @@ class Pdfcontroller extends Controller
         $lg['a_meta_dir'] = 'rtl';
         $lg['a_meta_language'] = 'fa';
         $lg['w_page'] = 'page';
-        $fontname = PDF::addTTFfont('/fonts/bnazanin.ttf', 'TrueTypeUnicode', '', 96);
+        $fontname = TCPDF_FONTS::addTTFfont('/fonts/bnazanin.ttf', 'TrueTypeUnicode', '', 96);
         PDF::SetFont($fontname, '', 12, '', false);
 
 // set some language-dependent strings (optional)
