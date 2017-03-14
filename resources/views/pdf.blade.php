@@ -11,6 +11,9 @@
 <body>
 
 <div class="container">
+    <div class="alert">
+        salam
+    </div>
     <h2>{{$salam}}</h2>
     <h2>{{$salam}}</h2>
     <h2>{{$salam}}</h2>
