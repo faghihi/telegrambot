@@ -17,6 +17,7 @@
     <div class="test">
         salam
     </div>
+    <img width="320" height="68" src="{{ url('').'/img/test.png' }}" />
     <h2>{{$salam}}</h2>
     <h2>{{$salam}}</h2>
     <h2>{{$salam}}</h2>
