@@ -24,7 +24,7 @@ class Pdfcontroller extends Controller
         PDF::setLanguageArray($lg);
         PDF::SetTitle('Hello World');
         PDF::AddPage();
-        PDF::writeHTML(view('pdf', ['salam'=>$id])->render());
+        PDF::writeHTML(view('pdf', ['salam'=>'سلام'])->render());
         $pages=PDF::getNumPages	();
         PDF::writeHTML(view('pdf', ['salam'=>$pages])->render());
 
