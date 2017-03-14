@@ -19,7 +19,8 @@ class Pdfcontroller extends Controller
         $lg['a_meta_dir'] = 'rtl';
         $lg['a_meta_language'] = 'fa';
         $lg['w_page'] = 'page';
-        $fontname = TCPDF_FONTS::addTTFfont('/fonts/bnazanin.ttf', 'TrueTypeUnicode', '', 96);
+        $fontname = TCPDF_FONTS::addTTFfont(public_path().'/fonts/bnazanin.ttf', 'TrueTypeUnicode', '', 96);
+//        dd($fontname);
         PDF::SetFont($fontname, '', 12, '', false);
 
 // set some language-dependent strings (optional)
@@ -28,10 +29,10 @@ class Pdfcontroller extends Controller
         PDF::AddPage();
         PDF::writeHTML(view('pdf', ['salam'=>'سلام'])->render());
         $pages=PDF::getNumPages	();
-        PDF::writeHTML(view('pdf', ['salam'=>$pages])->render());
-
-//        PDF::output('salam.pdf');
-//        $filename = public_path().'/uploads/salam.pdf';
-        PDF::output('resume.pdf', 'I');
+        dd($pages);
+//        PDF::writeHTML(view('pdf', ['salam'=>$pages])->render());
+//
+////        $filename = public_path().'/uploads/salam.pdf';
+//        PDF::output('resume.pdf', 'I');
     }
 }
