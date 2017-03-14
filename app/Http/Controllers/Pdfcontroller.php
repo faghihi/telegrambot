@@ -18,7 +18,8 @@ class Pdfcontroller extends Controller
         $lg['a_meta_dir'] = 'rtl';
         $lg['a_meta_language'] = 'fa';
         $lg['w_page'] = 'page';
-        PDF::SetFont('bnazanin', '', 12);
+        $fontname = PDF::addTTFfont('/fonts/bnazanin.ttf', 'TrueTypeUnicode', '', 96);
+        PDF::SetFont($fontname, '', 12, '', false);
 
 // set some language-dependent strings (optional)
         PDF::setLanguageArray($lg);
