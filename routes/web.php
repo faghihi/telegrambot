@@ -25,6 +25,13 @@ Route::get('/set', function () {
     dd($res);
 
 });
+Route::get('/set1', function () {
+    $res = Telegram::setWebhook([
+        'url' => 'https://threedman.herokuapp.com/343139142:AAGCpIOGVwFcbbJL56sLVSXUgz8zO3jPc34/webhook'
+    ]);
+    dd($res);
+
+});
 Route::get('/pdf','Pdfcontroller@index');
 //
 //Route::post('/376682828:AAE79WT571kMAmUk77iD3KJIni0ml7xixEs/webhook', function () {
